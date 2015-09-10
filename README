@@ -1,0 +1,2 @@
+`buck build b:app` success
+`buck build b:app` failed
