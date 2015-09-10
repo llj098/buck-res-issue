@@ -1,0 +1,42 @@
+import re
+
+
+android_resource(
+  name = 'res',
+  res = 'res',
+  package = 'com.example.a',
+  visibility = ['PUBLIC'],
+)
+
+android_manifest(
+    name = 'manifest',
+    skeleton = 'AndroidManifest.xml',
+)
+
+android_library(
+  name = 'src',
+  srcs =  glob(['src/**/*.java']),
+  deps = [
+    ':res',
+  ],
+  visibility = ['PUBLIC'],
+)
+
+keystore(
+  name = 'debug_keystore',
+  store = 'debug.keystore',
+  properties = 'debug.keystore.properties',
+)
+
+android_binary(
+  name = 'app',
+  manifest = ':manifest',
+  keystore = ':debug_keystore',
+  package_type = 'debug',
+  deps = [
+    '//b:res',
+    '//b:src',
+    ':res',
+    ':src',
+  ],
+)
