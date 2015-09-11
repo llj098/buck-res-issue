@@ -6,6 +6,7 @@ android_resource(
   res = 'res',
   package = 'com.example.a',
   visibility = ['PUBLIC'],
+  deps=['//b:res'],
 )
 
 android_manifest(
@@ -34,7 +35,6 @@ android_binary(
   keystore = ':debug_keystore',
   package_type = 'debug',
   deps = [
-    '//b:res',
     '//b:src',
     ':res',
     ':src',
